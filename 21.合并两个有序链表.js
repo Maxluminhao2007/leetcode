@@ -33,6 +33,23 @@
  * @return {ListNode}
  */
 var mergeTwoLists = function(l1, l2) {
-    
+    //新列表头部
+    let listHead = { val: -1, next: null};
+    //指针
+    let pointer = listHead;
+    //l1 l2指针都不指向null
+    while(l1 && l2) {
+        if(l1.val < l2.val) {
+            pointer.next = l1;
+            l1 = l1.next;
+        }else {
+            pointer.next = l2;
+            l2 = l2.next;
+        }
+        pointer = pointer.next;
+    }
+    //把剩下的接上
+    pointer.next = l1 || l2;
+    return listHead.next;
 };
 
