@@ -6,9 +6,9 @@
  * https://leetcode-cn.com/problems/implement-strstr/description/
  *
  * algorithms
- * Easy (37.93%)
+ * Easy (38.00%)
  * Total Accepted:    42.6K
- * Total Submissions: 112.1K
+ * Total Submissions: 112.2K
  * Testcase Example:  '"hello"\n"ll"'
  *
  * 实现 strStr() 函数。
@@ -41,7 +41,29 @@
  * @return {number}
  */
 var strStr = function(haystack, needle) {
-    return haystack.indexOf(needle);
+    let next = [-1];
+    let i = 0, j = -1;
+    //获得next数组,是partial match table向后移动一位获得的
+    while(i < needle.length - 1) {
+        if(j === -1 || needle.charAt(i) === needle.charAt(j)) {
+            next[++i] = ++j;
+        }else {
+            j = next[j];
+        }
+    }
+    i = 0, j = 0;
+    while(i < haystack.length && j < needle.length) {
+        if(j === -1 || haystack.charAt(i) === needle.charAt(j)) {
+            i++;
+            j++;
+        }else {
+            j = next[j];
+        }
+    }
+    if(j === needle.length) {
+        return i - j;
+    }else {
+        return -1;
+    }
 };
-
-console.log(strStr("aaaaa", "bba"))
+strStr('dwdwdwfegggsabffe', 'abcabc')
