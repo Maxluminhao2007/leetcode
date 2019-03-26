@@ -41,6 +41,19 @@
  * @return {TreeNode}
  */
 var sortedArrayToBST = function(nums) {
+    if(!nums) return null;
+    return makeTree(0, nums.length - 1, nums);
     
 };
+let makeTree = function(start, end, nums) {
+    if(start > end) {
+        return null
+    }
 
+    let mid = ((start + end) / 2) >>0
+    let node = new TreeNode(nums[mid]);
+
+    node.left = makeTree(start, mid - 1, nums);
+    node.right = makeTree(mid + 1, end, nums);
+    return node;
+}
