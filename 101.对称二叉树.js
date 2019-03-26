@@ -47,15 +47,29 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
+// var isSymmetric = function(root) {
+//     if(!root) return true;
+//     return issym(root.left, root.right);
+// };
+// var issym = function(p , q) {
+//     if(!p && !q) return true;
+//     if(!p || !q) return false;
+//     return p.val === q.val && issym(p.left, q.right) && issym(p.right, q.left);
+// }
 var isSymmetric = function(root) {
-    if(!root) return true;
-    return issym(root.left, root.right);
-};
-var issym = function(p , q) {
-    if(!p  && !q) return true;
-    else if(!p || !q) return false;
-    if(p.val === q.val) {
-        return issym(p.left, q.right) && issym(p.right, q.left);
-    }
-    return false;
-}
+        if(!root) return true;
+        let stack = [[root.left, root.right]];
+
+        while(stack.length > 0) {
+            let [left, right] = stack.pop();
+
+            if(!right && !left) continue;
+            if(!right || !left) return false;
+            if(right.val === left.val) {
+                stack.push([left.left, right.right]);
+                stack.push([left.right, right.left]);
+            }else return false;
+        }
+        return true;
+    };
+
