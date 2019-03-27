@@ -34,21 +34,23 @@
  * @param {number} numRows
  * @return {number[][]}
  */
-var generate = function(numRows) {
-    let init = [1];
-    let output = [[1]]
-    if(numRows === 1) return output;
-    if(numRows === 0) return [];
-    for(let i = 2; i <= numRows; i++) {
-        //复制一份init
-        let temp = init.concat([]);
-        //init右移一位
-        init.unshift(0);
-        for(let j = 0; j < init.length; j++) {
-            init[j] = temp[j]? (init[j] + temp[j]) :  init[j]
+var generate = function(rowIndex) {
+    if(rowIndex === 0) return [];
+    let result = [[1]];
+    let output = [1];
+    for(let i = 1; i < rowIndex; i++) {
+        let len = output.length;
+        let tmp = output.concat([]);
+        for(let j = 0; j < len; j++) {
+            if(output[j + 1]) {
+                output[j + 1] += tmp[j];
+            }
+            else {
+                output[j + 1] = tmp[j];
+            }
         }
-        output.push(init.concat([]));
+        result.push(output.concat([]));
     }
-    return output;
+    return result;
 };
 
