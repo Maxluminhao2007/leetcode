@@ -1,10 +1,4 @@
-var convertToTitle = function(n) {
-    let output = '';
-    while(n > 26) {
-        output += String.fromCharCode(64 + (n / 26) >> 0);
-        n = n % 26;
-    }
-    return output += String.fromCharCode(64 + n);
+var reverseBits = function(n) {
+    return n >> 1
 };
-
-console.log(convertToTitle(702))
+console.log(reverseBits(43261596));
