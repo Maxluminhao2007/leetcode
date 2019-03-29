@@ -1,17 +1,10 @@
-var generate = function(numRows) {
-    let init = [1];
-    let output = [[1]]
-    if(numRows === 1) return output;
-    for(let i = 2; i <= numRows; i++) {
-        //复制一份init
-        let temp = init.concat([]);
-        //init右移一位
-        init.unshift(0);
-        for(let j = 0; j < init.length; j++) {
-            init[j] = temp[j]? (init[j] + temp[j]) :  init[j]
-        }
-        output.push(init.concat([]));
+var convertToTitle = function(n) {
+    let output = '';
+    while(n > 26) {
+        output += String.fromCharCode(64 + (n / 26) >> 0);
+        n = n % 26;
     }
-    return output;
+    return output += String.fromCharCode(64 + n);
 };
-generate(5)
+
+console.log(convertToTitle(702))
