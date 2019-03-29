@@ -1,4 +1,4 @@
-var reverseBits = function(n) {
-    return n >> 1
+var hammingWeight = function(n) {
+    return n.toString(2);
 };
-console.log(reverseBits(43261596));
+console.log(hammingWeight(4294967293));
