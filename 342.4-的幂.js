@@ -33,6 +33,7 @@
  * @return {boolean}
  */
 var isPowerOfFour = function(num) {
-    return ((num & (num - 1)) === 0) && ((num & 0x55555555) === 0);
+    //注意一个是等于0，一个是不等于0
+    return ((num & (num - 1)) === 0) && ((num & 0x55555555) !== 0);
 };
 
